@@ -24,7 +24,6 @@
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -50,29 +49,11 @@
                     <span>Dashboard</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Visa Applications
-            </div>
-
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="embassy_applications_pending.html">
+                <a class="nav-link" href="embassy_applications.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Pending</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="embassy_applications_rejected.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Rejected</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="embassy_applications_approved.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Approved</span></a>
+                    <span>Visa Applications</span></a>
             </li>
         </ul>
         <!-- End of Sidebar -->
@@ -291,9 +272,31 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Visa applications - Pending</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Visa applications</h6>
                         </div>
                         <div class="card-body">
+
+                            <!-- Custom Filters -->
+                            <div>
+                                <span style="margin-left:9px;margin-top:8px;float:left;">Status:&nbsp;</span>
+
+                                <select class="form-select" id="inputStatusFilter" style="width:auto;float:left;">
+                                    <option selected value="all">All</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+
+                                <span style="margin-left:25px;margin-top:8px;float:left;">Filter date time
+                                    applied:&nbsp;</span>
+
+                                <input class="form-select" type="text" id="inputDateTimeRangeFilter" name="datetimes"
+                                    style="width:399px;margin-left:9px;float:left;" />
+
+                                <div style="clear: both"></div>
+                            </div>
+
+
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="visa-applications-table" width="100%"
                                     cellspacing="0">
@@ -303,15 +306,8 @@
                                             <th>Passport Number</th>
                                             <th>Date Time Applied</th>
                                             <th>Branch</th>
+                                            <th>Status</th>
                                             <th class="no-sort">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <thead>
-                                        <tr class="filters">
-                                            <th>Name</th>
-                                            <th>Passport Number</th>
-                                            <th>Date Time Applied</th>
-                                            <th>Branch</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -320,6 +316,7 @@
                                             <th>Passport Number</th>
                                             <th>Date Time Applied</th>
                                             <th>Branch</th>
+                                            <th>Status</th>
                                             <th class="no-sort">Actions</th>
                                         </tr>
                                     </tfoot>
@@ -329,52 +326,23 @@
                                             <td>A16348719</td>
                                             <td>5 Jan 2023, 9:00 AM</td>
                                             <td>Shanghai</td>
-                                            <td>
-                                                <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
-                                                    data-target="#approveModal">
-                                                    <span class="icon text-white-50">
-                                                        <i class="fas fa-check"></i>
-                                                    </span>
-                                                    <span class="text">Approve</span>
-                                                </a>
-
-                                                <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal"
-                                                    data-target="#rejectModal">
-                                                    <span class="icon text-white-50">
-                                                        <i class="fas fa-ban"></i>
-                                                    </span>
-                                                    <span class="text">Reject</span>
-                                                </a>
-                                            </td>
+                                            <td>Approved</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <td><a href="#">Zhang Wei</a></td>
                                             <td>A86739401</td>
                                             <td>5 Jan 2023, 12:30 PM</td>
                                             <td>Beijing</td>
-                                            <td>
-                                                <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
-                                                    data-target="#approveModal">
-                                                    <span class="icon text-white-50">
-                                                        <i class="fas fa-check"></i>
-                                                    </span>
-                                                    <span class="text">Approve</span>
-                                                </a>
-
-                                                <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal"
-                                                    data-target="#rejectModal">
-                                                    <span class="icon text-white-50">
-                                                        <i class="fas fa-ban"></i>
-                                                    </span>
-                                                    <span class="text">Reject</span>
-                                                </a>
-                                            </td>
+                                            <td>Rejected</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <td><a href="#">Liu Jing</a></td>
                                             <td>A54932782</td>
                                             <td>5 Jan 2023, 3:45 PM</td>
                                             <td>Guangzhou</td>
+                                            <td>Pending</td>
                                             <td>
                                                 <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
                                                     data-target="#approveModal">
@@ -398,6 +366,7 @@
                                             <td>A37498162</td>
                                             <td>5 Jan 2023, 6:15 PM</td>
                                             <td>Tianjin</td>
+                                            <td>Pending</td>
                                             <td>
                                                 <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
                                                     data-target="#approveModal">
@@ -421,6 +390,7 @@
                                             <td>A92867310</td>
                                             <td>6 Jan 2023, 8:30 AM</td>
                                             <td>Shenzhen</td>
+                                            <td>Pending</td>
                                             <td>
                                                 <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
                                                     data-target="#approveModal">
@@ -444,6 +414,7 @@
                                             <td>A74098213</td>
                                             <td>6 Jan 2023, 11:00 AM</td>
                                             <td>Wuhan</td>
+                                            <td>Pending</td>
                                             <td>
                                                 <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
                                                     data-target="#approveModal">
@@ -467,6 +438,7 @@
                                             <td>A83619274</td>
                                             <td>6 Jan 2023, 2:15 PM</td>
                                             <td>Chengdu</td>
+                                            <td>Pending</td>
                                             <td>
                                                 <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
                                                     data-target="#approveModal">
@@ -490,6 +462,7 @@
                                             <td>A23784967</td>
                                             <td>6 Jan 2023, 5:30 PM</td>
                                             <td>Chongqing</td>
+                                            <td>Pending</td>
                                             <td>
                                                 <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
                                                     data-target="#approveModal">
@@ -513,6 +486,7 @@
                                             <td>A65931278</td>
                                             <td>7 Jan 2023, 9:45 AM</td>
                                             <td>Nanjing</td>
+                                            <td>Pending</td>
                                             <td>
                                                 <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
                                                     data-target="#approveModal">
@@ -536,6 +510,103 @@
                                             <td>A47950132</td>
                                             <td>7 Jan 2023, 1:00 PM</td>
                                             <td>Hangzhou</td>
+                                            <td>Pending</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
+                                                    data-target="#approveModal">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
+
+                                                <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal"
+                                                    data-target="#rejectModal">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Xiong Long</a></td>
+                                            <td>A47953132</td>
+                                            <td>7 Jan 2023, 1:03 PM</td>
+                                            <td>Hangzhou</td>
+                                            <td>Pending</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
+                                                    data-target="#approveModal">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
+
+                                                <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal"
+                                                    data-target="#rejectModal">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Jiang Zhou</a></td>
+                                            <td>A32867310</td>
+                                            <td>6 Jan 2023, 8:33 AM</td>
+                                            <td>Shenzhen</td>
+                                            <td>Pending</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
+                                                    data-target="#approveModal">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
+
+                                                <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal"
+                                                    data-target="#rejectModal">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Li Chen</a></td>
+                                            <td>A26348721</td>
+                                            <td>5 Jan 2023, 9:03 AM</td>
+                                            <td>Shanghai</td>
+                                            <td>Pending</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
+                                                    data-target="#approveModal">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
+
+                                                <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal"
+                                                    data-target="#rejectModal">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Huang Da</a></td>
+                                            <td>A44941278</td>
+                                            <td>7 Jan 2023, 9:45 AM</td>
+                                            <td>Nanjing</td>
+                                            <td>Pending</td>
                                             <td>
                                                 <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal"
                                                     data-target="#approveModal">
@@ -598,7 +669,8 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="login.html">Logout</a>
@@ -679,17 +751,23 @@
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+    <!-- DateTime range picker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
     <script>
         $(document).ready(function () {
-            $('#visa-applications-table').DataTable({
+            var visaApplicationsTable = $('#visa-applications-table').DataTable({
                 orderCellsTop: true,
                 fixedHeader: true,
                 lengthChange: false,
-                searching: false,
-                columnDefs: [{
-                    targets: 'no-sort',
-                    orderable: false,
-                }],
+                columnDefs: [
+                    {
+                        targets: 'no-sort',
+                        orderable: false,
+                    }
+                ],
                 initComplete: function () {
                     var api = this.api();
 
@@ -740,6 +818,98 @@
                                 });
                         });
                 },
+            });
+
+            var currentFilterOptions = {
+                status: '',
+                startDateTimeApplied: - 1,
+                endDateTimeApplied: -1,
+            };
+
+            function refreshVisaApplicationsTableFilters() {
+                $.fn.dataTable.ext.search.pop();
+
+                $.fn.dataTable.ext.search.push(
+                    function (settings, data, dataIndex) {
+                        if (currentFilterOptions.status !== '') {
+                            if (data[4] !== currentFilterOptions.status) {
+                                return false;
+                            }
+                        }
+
+                        if (currentFilterOptions.startDateTimeApplied !== -1) {
+                            var dateParsed = moment(data[2], dateFormat).toDate();
+                            var dateParsedUnix = Math.floor(dateParsed.getTime() / 1000);
+
+                            if (dateParsedUnix < currentFilterOptions.startDateTimeApplied) {
+                                return false;
+                            }
+                        }
+
+                        if (currentFilterOptions.endDateTimeApplied !== -1) {
+                            var dateParsed = moment(data[2], dateFormat).toDate();
+                            var dateParsedUnix = Math.floor(dateParsed.getTime() / 1000);
+
+                            if (dateParsedUnix > currentFilterOptions.endDateTimeApplied) {
+                                return false;
+                            }
+                        }
+
+                        return true;
+                    }
+                );
+
+
+                visaApplicationsTable.draw();
+            }
+
+            $('#inputStatusFilter').change(function (ev) {
+
+                if (ev.target.value === 'all') {
+                    currentFilterOptions.status = '';
+                }
+
+                if (ev.target.value === 'pending') {
+                    currentFilterOptions.status = 'Pending';
+                }
+
+                if (ev.target.value === 'approved') {
+                    currentFilterOptions.status = 'Approved';
+                }
+
+                if (ev.target.value === 'rejected') {
+                    currentFilterOptions.status = 'Rejected';
+                }
+
+                refreshVisaApplicationsTableFilters();
+
+
+            });
+
+            var dateFormat = 'D MMM YYYY, h:mm A';
+
+            $('#inputDateTimeRangeFilter').daterangepicker({
+                timePicker: true,
+                startDate: moment().startOf('hour').subtract(19, 'days'),
+                endDate: moment(),
+                locale: {
+                    format: dateFormat
+                }
+            });
+
+            $('#inputDateTimeRangeFilter').on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format(dateFormat) + ' - ' + picker.endDate.format(dateFormat));
+
+                var startDateParsed = moment(picker.startDate.format(dateFormat), dateFormat).toDate();
+                var startDateParsedUnix = Math.floor(startDateParsed.getTime() / 1000);
+
+                var endDateParsed = moment(picker.endDate.format(dateFormat), dateFormat).toDate();
+                var endDateParsedUnix = Math.floor(endDateParsed.getTime() / 1000);
+
+                currentFilterOptions.startDateTimeApplied = startDateParsedUnix;
+                currentFilterOptions.endDateTimeApplied = endDateParsedUnix;
+
+                refreshVisaApplicationsTableFilters();
             });
         });
     </script>
