@@ -4,6 +4,7 @@ $(document).ready(function() {
     "columnDefs": [ {
       "targets": 'no-sort',
       "orderable": false,
+      "lengthChange": false,
     }]
   });
 });
