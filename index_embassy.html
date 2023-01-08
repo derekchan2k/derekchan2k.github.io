@@ -11,55 +11,18 @@
 
     <title>Visa Application System for Embassy</title>
 
-    <!-- Custom fonts for this template-->
+    <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
+    <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
 
-    <script src="js/sort-table.js"></script>
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-    <script>
-        function handleVisaApplicationRowCheck(target) {
-            if (target.checked) {
-                var bulkApprove = document.getElementById('bulk-approve');
-                bulkApprove.classList.remove("disabled");
-
-                var bulkReject = document.getElementById('bulk-reject');
-                bulkReject.classList.remove("disabled");
-            } else {
-                var bxs = document.getElementById("visa-applications").getElementsByTagName("input");
-                var isChecked = false
-                for (var i = 0; i < bxs.length; i++) {
-                    if (bxs[i].checked) {
-                        isChecked = true;
-                    }
-                }
-                if (!isChecked) {
-                    var bulkApprove = document.getElementById('bulk-approve');
-                    bulkApprove.classList.add("disabled");
-
-                    var bulkReject = document.getElementById('bulk-reject');
-                    bulkReject.classList.add("disabled");
-                }
-            }
-        }
-
-        function handleVisaApplicationNameSort(target) {
-            console.log('handleVisaApplicationNameSort');
-        }
-
-        function handleVisaApplicationPassportSort(target) {
-            console.log('handleVisaApplicationPassportSort');
-        }
-
-        function handleVisaApplicationDateTimeAppliedSort(target) {
-            console.log('handleVisaApplicationDateTimeAppliedSort');
-        }
-    </script>
 </head>
 
 <body id="page-top">
@@ -79,7 +42,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -165,7 +128,7 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
@@ -177,15 +140,6 @@
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components,
-                    and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
-                    Pro!</a>
             </div>
 
         </ul>
@@ -201,9 +155,11 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+                    <form class="form-inline">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </form>
 
                     <!-- Topbar Search -->
                     <form
@@ -400,326 +356,247 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Content Row -->
-                    <div class="row">
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Visa applications</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="visa-applications-table" width="100%"
+                                    cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Passport Number</th>
+                                            <th>Date Time Applied</th>
+                                            <th>Branch</th>
+                                            <th class="no-sort">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Passport Number</th>
+                                            <th>Date Time Applied</th>
+                                            <th>Branch</th>
+                                            <th class="no-sort">Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="#">Li Chen</a></td>
+                                            <td>A16348719</td>
+                                            <td>5 Jan 2023, 9:00 AM</td>
+                                            <td>Shanghai</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
 
-                        <!-- Content Column -->
-                        <div class="col-lg-12 mb-4">
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Zhang Wei</a></td>
+                                            <td>A86739401</td>
+                                            <td>5 Jan 2023, 12:30 PM</td>
+                                            <td>Beijing</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
 
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Visa Applications</h6>
-                                </div>
-                                <div class="card-body">
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Liu Jing</a></td>
+                                            <td>A54932782</td>
+                                            <td>5 Jan 2023, 3:45 PM</td>
+                                            <td>Guangzhou</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
 
-                                    <div style="padding-bottom:1.25em;">
-                                        <a id="bulk-approve" href="#" class="btn disabled btn-success btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-check"></i>
-                                            </span>
-                                            <span class="text">Approve</span>
-                                        </a>
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Wang Xiaoli</a></td>
+                                            <td>A37498162</td>
+                                            <td>5 Jan 2023, 6:15 PM</td>
+                                            <td>Tianjin</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
 
-                                        <a id="bulk-reject" href="#" class="btn disabled btn-danger btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-ban"></i>
-                                            </span>
-                                            <span class="text">Reject</span>
-                                        </a>
-                                    </div>
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Jiang Yifan</a></td>
+                                            <td>A92867310</td>
+                                            <td>6 Jan 2023, 8:30 AM</td>
+                                            <td>Shenzhen</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
 
-                                    <!-- SIMON: Visa applications table HERE -->
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered sortable" id="visa-applications" width="100%"
-                                            cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th class="sorttable_nosort"></th>
-                                                    <th style="cursor:pointer;">
-                                                        Name</th>
-                                                    <th style="cursor:pointer;">Passport Number</th>
-                                                    <th style="cursor:pointer;">Date Time Applied</th>
-                                                    <th style="cursor:pointer;">Branch</th>
-                                                    <th class="sorttable_nosort">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><input type="checkbox"
-                                                            onchange="handleVisaApplicationRowCheck(this)" /></td>
-                                                    <td><a href="#">Li Chen</a></td>
-                                                    <td>A16348719</td>
-                                                    <td>5 Jan 2023, 9:00 AM</td>
-                                                    <td>Shanghai</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-success btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-                                                            <span class="text">Approve</span>
-                                                        </a>
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Wu Hao</a></td>
+                                            <td>A74098213</td>
+                                            <td>6 Jan 2023, 11:00 AM</td>
+                                            <td>Wuhan</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
 
-                                                        <a href="#" class="btn btn-danger btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-ban"></i>
-                                                            </span>
-                                                            <span class="text">Reject</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox"
-                                                            onchange="handleVisaApplicationRowCheck(this)" /></td>
-                                                    <td><a href="#">Zhang Wei</a></td>
-                                                    <td>A86739401</td>
-                                                    <td>5 Jan 2023, 12:30 PM</td>
-                                                    <td>Beijing</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-success btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-                                                            <span class="text">Approve</span>
-                                                        </a>
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Zou Liang</a></td>
+                                            <td>A83619274</td>
+                                            <td>6 Jan 2023, 2:15 PM</td>
+                                            <td>Chengdu</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
 
-                                                        <a href="#" class="btn btn-danger btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-ban"></i>
-                                                            </span>
-                                                            <span class="text">Reject</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox"
-                                                            onchange="handleVisaApplicationRowCheck(this)" /></td>
-                                                    <td><a href="#">Liu Jing</a></td>
-                                                    <td>A54932782</td>
-                                                    <td>5 Jan 2023, 3:45 PM</td>
-                                                    <td>Guangzhou</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-success btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-                                                            <span class="text">Approve</span>
-                                                        </a>
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Qin Zhang</a></td>
+                                            <td>A23784967</td>
+                                            <td>6 Jan 2023, 5:30 PM</td>
+                                            <td>Chongqing</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
 
-                                                        <a href="#" class="btn btn-danger btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-ban"></i>
-                                                            </span>
-                                                            <span class="text">Reject</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox"
-                                                            onchange="handleVisaApplicationRowCheck(this)" /></td>
-                                                    <td><a href="#">Wang Xiaoli</a></td>
-                                                    <td>A37498162</td>
-                                                    <td>5 Jan 2023, 6:15 PM</td>
-                                                    <td>Tianjin</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-success btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-                                                            <span class="text">Approve</span>
-                                                        </a>
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Huang Mei</a></td>
+                                            <td>A65931278</td>
+                                            <td>7 Jan 2023, 9:45 AM</td>
+                                            <td>Nanjing</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
 
-                                                        <a href="#" class="btn btn-danger btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-ban"></i>
-                                                            </span>
-                                                            <span class="text">Reject</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox"
-                                                            onchange="handleVisaApplicationRowCheck(this)" /></td>
-                                                    <td><a href="#">Jiang Yifan</a></td>
-                                                    <td>A92867310</td>
-                                                    <td>6 Jan 2023, 8:30 AM</td>
-                                                    <td>Shenzhen</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-success btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-                                                            <span class="text">Approve</span>
-                                                        </a>
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Zhou Qing</a></td>
+                                            <td>A47950132</td>
+                                            <td>7 Jan 2023, 1:00 PM</td>
+                                            <td>Hangzhou</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Approve</span>
+                                                </a>
 
-                                                        <a href="#" class="btn btn-danger btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-ban"></i>
-                                                            </span>
-                                                            <span class="text">Reject</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox"
-                                                            onchange="handleVisaApplicationRowCheck(this)" /></td>
-                                                    <td><a href="#">Wu Hao</a></td>
-                                                    <td>A74098213</td>
-                                                    <td>6 Jan 2023, 11:00 AM</td>
-                                                    <td>Wuhan</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-success btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-                                                            <span class="text">Approve</span>
-                                                        </a>
-
-                                                        <a href="#" class="btn btn-danger btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-ban"></i>
-                                                            </span>
-                                                            <span class="text">Reject</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox"
-                                                            onchange="handleVisaApplicationRowCheck(this)" /></td>
-                                                    <td><a href="#">Zou Liang</a></td>
-                                                    <td>A83619274</td>
-                                                    <td>6 Jan 2023, 2:15 PM</td>
-                                                    <td>Chengdu</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-success btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-                                                            <span class="text">Approve</span>
-                                                        </a>
-
-                                                        <a href="#" class="btn btn-danger btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-ban"></i>
-                                                            </span>
-                                                            <span class="text">Reject</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox"
-                                                            onchange="handleVisaApplicationRowCheck(this)" /></td>
-                                                    <td><a href="#">Qin Zhang</a></td>
-                                                    <td>A23784967</td>
-                                                    <td>6 Jan 2023, 5:30 PM</td>
-                                                    <td>Chongqing</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-success btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-                                                            <span class="text">Approve</span>
-                                                        </a>
-
-                                                        <a href="#" class="btn btn-danger btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-ban"></i>
-                                                            </span>
-                                                            <span class="text">Reject</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox"
-                                                            onchange="handleVisaApplicationRowCheck(this)" /></td>
-                                                    <td><a href="#">Huang Mei</a></td>
-                                                    <td>A65931278</td>
-                                                    <td>7 Jan 2023, 9:45 AM</td>
-                                                    <td>Nanjing</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-success btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-                                                            <span class="text">Approve</span>
-                                                        </a>
-
-                                                        <a href="#" class="btn btn-danger btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-ban"></i>
-                                                            </span>
-                                                            <span class="text">Reject</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox"
-                                                            onchange="handleVisaApplicationRowCheck(this)" /></td>
-                                                    <td><a href="#">Zhou Qing</a></td>
-                                                    <td>A47950132</td>
-                                                    <td>7 Jan 2023, 1:00 PM</td>
-                                                    <td>Hangzhou</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-success btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-                                                            <span class="text">Approve</span>
-                                                        </a>
-
-                                                        <a href="#" class="btn btn-danger btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-ban"></i>
-                                                            </span>
-                                                            <span class="text">Reject</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <!-- SIMON: Pagination HERE -->
-                                    <div class="row">
-                                        <div class="col-xl-12 col-md-12 mb-4  text-center">
-                                            <a href="#" class="btn btn-light btn-icon-split disabled">
-                                                <span class="text">1</span>
-                                            </a>
-                                            <a href="#" class="btn btn-light btn-icon-split">
-                                                <span class="text">2</span>
-                                            </a>
-                                            <a href="#" class="btn btn-light btn-icon-split">
-                                                <span class="text">3</span>
-                                            </a>
-                                            <a href="#" class="btn btn-light btn-icon-split">
-                                                <span class="text">4</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xl-6 col-md-6 mb-4">
-                                            <a href="#" class="btn btn-light btn-icon-split disabled">
-                                                <span class="icon text-gray-600">
-                                                    <i class="fas fa-arrow-left"></i>
-                                                </span>
-                                                <span class="text">Previous Page</span>
-                                            </a>
-                                        </div>
-
-                                        <div class="col-xl-6 col-md-6 mb-4 text-right">
-                                            <a href="#" class="btn btn-light btn-icon-split">
-                                                <span class="icon text-gray-600">
-                                                    <i class="fas fa-arrow-right"></i>
-                                                </span>
-                                                <span class="text">Next Page</span>
-                                            </a>
-                                        </div>
-
-                                    </div>
-
-                                </div>
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-ban"></i>
+                                                    </span>
+                                                    <span class="text">Reject</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-
                         </div>
                     </div>
 
@@ -733,7 +610,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Your Website 2020</span>
                     </div>
                 </div>
             </footer>
@@ -781,11 +658,20 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#visa-applications-table').DataTable({
+                "columnDefs": [{
+                    "targets": 'no-sort',
+                    "orderable": false,
+                }]
+            });
+        });
+
+    </script>
 
 </body>
 
